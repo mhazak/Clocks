@@ -1,0 +1,93 @@
+<div class="date">
+    <div class="hour-hand"></div>
+    <div class="minute-hand"></div>
+    <div class="second-hand"></div>
+    <div class="center"></div>
+    <div class="minutes"></div>
+</div>
+
+<script>
+
+    const inner = document.querySelector('.date');
+    // every minute
+    const minutes = document.querySelector('.minutes');
+    let rotation = 0;
+    let num_rotation = 0;
+
+    // create hours
+    for (let x = 1; x <= 12; x++) {
+        const hour_parent = document.createElement('div');
+        const hour = document.createElement('div');
+        hour_parent.className = 'date__hour';
+        hour_parent.style.transform = `rotate(${rotation += 30}deg) translate(0, 2rem)`;
+        hour.style.transform = `rotate(-${rotation}deg)`;
+        hour.innerHTML = x;
+        hour_parent.appendChild(hour);
+        inner.appendChild(hour_parent);
+    }
+    
+    // create minutes
+    for (let x = 1; x <= 60; x++) {
+        const minute = document.createElement('div');
+        const mark = document.createElement('div');
+        const num = document.createElement('div');
+
+        minute.className = 'minute';
+        mark.className = 'mark';
+        num.className = 'num';
+
+        minute.style.transform = `rotate(${rotation += 6}deg) translate(0, -150%)`;
+
+        if (x % 5 === 0) {
+            num.style.transform = `translateX(-50%) rotate(-${num_rotation += 30}deg)`;
+            mark.classList.add('mark-hour');
+            minute.appendChild(mark);
+            minute.appendChild(num);
+        } else {
+            minute.appendChild(mark);
+        }
+
+        minutes.appendChild(minute);
+    }
+    
+    const DEGREES = 360;
+    const MINUTES = 60;
+    const HOURS = 24;
+    const SECONDS = 60;
+    const setMinutes = function () {
+        const el = document.querySelector('.minute-hand');
+        const actual_time = new Date().getMinutes();
+        const degree = (DEGREES / MINUTES) * actual_time;
+        el.style.transform = `rotate(${degree}deg)`;
+    };
+
+    const setHours = function () {
+        const el = document.querySelector('.hour-hand');
+        const actual_time = new Date().getHours();
+        const degree = (DEGREES / HOURS) * actual_time;
+        el.style.transform = `rotate(${degree}deg)`;
+    };
+    
+    const setSeconds = function () {
+        const el = document.querySelector('.second-hand');
+        const actual_time = new Date().getSeconds();
+        const degree = (DEGREES / SECONDS) * actual_time;
+        el.style.transform = `rotate(${degree}deg)`;
+    };
+    
+    
+    setInterval(() => {
+        const actual_time = new Date();
+        if (actual_time.getSeconds() == 0)
+            setMinutes();
+        if (actual_time.getMinutes() == 0)
+            setHours();
+        setSeconds();
+
+    }, 1000);
+    setMinutes();
+    setHours();
+    setSeconds();
+
+</script>
+
