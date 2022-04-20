@@ -1,20 +1,18 @@
 {
-  "name": "emptyproject",
-  "description": "Total.js empty project.",
+  "name": "clocks",
+  "description": "Simple clock app.",
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
-    "node-sass": "^7.0.1",
     "total4": "latest"
   },
   "scripts": {
-    "start": "node index.js",
-    "compile:sass": "node-sass public/css/main.scss public/css/style.comp.css -w"
+    "start": "node index.js"
   },
   "keywords": [
     "empty",
     "project"
   ],
-  "author": "Peter Širka",
+  "author": "Marek Hazák",
   "license": "MIT"
 }
