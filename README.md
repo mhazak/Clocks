@@ -1,6 +1,5 @@
-# Audio app
+# Clocks
 This app is part of 30 projects JS challenges.
-- Application listens on keyboard events and then, if correct key is hitted, play sounds
 __Instructions__:
 - make sure you have __node.js__ installed on your machine. If you don't, please download and install it from `https://nodejs.org/en/`
 - download project
